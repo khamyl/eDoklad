@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/background"
+    tools:context=".activities.Login">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="eDoklad"
+        android:textColor="#FFF"
+        android:textSize="50dp"
+        android:layout_marginTop="50dp"
+        android:fontFamily="sans-serif-light"
+        android:textAlignment="center"/>
+    
+    <EditText
+        android:id="@+id/login_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_margin="17dp"
+        android:background="@drawable/shape_edittext"
+        android:padding="12dp"
+        android:drawableStart="@drawable/ic_person_black_24dp"
+        android:drawablePadding="10dp"
+        android:textColorHint="#fff"
+        android:textColor="#fff"
+        android:inputType="textEmailAddress"
+        android:hint="email" />
+
+    <EditText
+        android:id="@+id/login_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_margin="17dp"
+        android:background="@drawable/shape_edittext"
+        android:padding="12dp"
+        android:drawableStart="@drawable/ic_lock_black_24dp"
+        android:drawablePadding="10dp"
+        android:textColorHint="#fff"
+        android:textColor="#fff"
+        android:inputType="textPassword"
+        android:hint="heslo" />
+
+    <Button
+        android:id="@+id/login_button_registration"
+        android:text="Prihlásenie"
+        android:textColor="#000"
+        android:textSize="20sp"
+        android:layout_margin="17dp"
+        android:background="@drawable/shape_loginbutton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+</LinearLayout>
