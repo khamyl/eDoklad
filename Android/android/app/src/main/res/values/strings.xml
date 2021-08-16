@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">eDoklad</string>
+    <string name="imageView">show image after photo</string>
+    <string name="photo">take a photo</string>
+</resources>
