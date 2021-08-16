@@ -16,7 +16,7 @@ export default {
     },
 
     created () {
-        this.$eventBus.$on('show-modal', ({ modal_content, title = '', props = null }) => {                 
+        this.eventBus.on('show-modal', ({ modal_content, title = '', props = null }) => {                 
             this.modal_content = modal_content,
             this.title = title,
             this.props = props

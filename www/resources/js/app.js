@@ -7,8 +7,6 @@
 
 require('./bootstrap');
 
-window.Vue = require('vue');
-
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /**
@@ -31,15 +29,24 @@ if (token) {
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.prototype.$eventBus = new Vue(); // Global event bus
+import { createApp } from 'vue';
+import mitt from 'mitt';
 
-Vue.component('modal-popup', require('./components/common/ModalPopup.vue'));
-Vue.component('modal-popup-root', require('./components/common/ModalPopupRoot.vue'));
-Vue.component('modal-submit-button', require('./components/ModalSubmitButton.vue'));
+const Vue = createApp({});
 
-Vue.component('role-create-button',   require('./components/RoleCreateButton.vue'));
-Vue.component('role-edit-button',   require('./components/RoleEditButton.vue'));
+//Create global event bus
+const eventBus = mitt();
+Vue.config.globalProperties.eventBus = eventBus;
 
-const app = new Vue({
-    el: '#app'
-});
+
+// Define Components
+Vue.component('modal-popup', require('./components/common/ModalPopup.vue').default);    
+Vue.component('modal-popup-root', require('./components/common/ModalPopupRoot.vue').default);
+Vue.component('modal-submit-button', require('./components/ModalSubmitButton.vue').default);
+
+Vue.component('role-create-button',   require('./components/RoleCreateButton').default);
+Vue.component('role-edit-button',   require('./components/RoleEditButton').default);
+
+
+// Mount te app
+Vue.mount('#app');

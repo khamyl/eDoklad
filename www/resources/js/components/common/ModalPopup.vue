@@ -9,7 +9,7 @@
                     </button>
                     <h4 class="modal-title" id="myModalLabel">{{ (title!='')?title:'Loading...' }}</h4>
                 </div>
-                <div class="loading-spinner" style="margin-top:10px" v-if="!this.$slots.default">
+                <div class="loading-spinner" style="margin-top:10px" v-if="this.isSlotEmpty()">
                     <div class="loader" id="loader-1"></div>
                 </div>
                 <div id='modal_body' class="modal-body" >
@@ -25,9 +25,17 @@
 </template>
 
 <script>    
+    import {Comment} from 'vue';
     export default {        
         props: {
             title: String
-        }
+        },
+
+        methods: {
+            isSlotEmpty(){
+                return this.$slots.default()[0].type == Comment;
+            }
+        },        
     }
+    
 </script>

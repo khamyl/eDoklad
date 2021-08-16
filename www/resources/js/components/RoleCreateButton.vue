@@ -16,8 +16,8 @@ export default {
                         return {
                             form: new Form({"slug": ""}),
                     }}
-                };                
-                this.$eventBus.$emit('show-modal', {modal_content: CreateRoleForm, title: 'Create role'});
+                };                                
+                this.eventBus.emit('show-modal', {modal_content: CreateRoleForm, title: 'Create role'});
             }) 
         }   
     }
