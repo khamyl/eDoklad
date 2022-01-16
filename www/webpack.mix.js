@@ -15,4 +15,5 @@ mix.js('resources/js/app.js', 'public/js')
    .vue()
    .sass('resources/sass/app.scss', 'public/css', [
        //
-   ]);   
+   ]); 
+   //maybe add .version() - it deals with cashing of resources in the browser (common.css?ncnn7edk3204nmpwd93n)  

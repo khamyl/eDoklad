@@ -17,12 +17,12 @@ class CreateDocReceiptItemsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('doc_receipt_id');
 
-            $table->string ('name', 350);            
-            $table->decimal('price_no_vat');
+            $table->string ('name', 350);    
+            $table->integer('quantity');    
+            $table->integer('price');                
+            $table->integer('price_no_vat');
             $table->integer('vat');
-            $table->decimal('price');
-            $table->integer('quantity');
-
+            
             $table->foreign('doc_receipt_id')->references('id')->on('doc_receipts')->onDelete('cascade');
             
         });

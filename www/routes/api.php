@@ -13,6 +13,15 @@ use Illuminate\Http\Request;
 |
 */
 
+//Users
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+//Permissions
+Route::get('permissions', 'Api\PermissionController@getAllPermissions');
+Route::get('permissions/{role}', 'Api\PermissionController@getRole');
+
+//Tags
+Route::get('tags/{tag}', 'Api\TagController@getTag');
+Route::get('tags/getFgColor/{bgColor}', 'Api\TagController@getFgColor');

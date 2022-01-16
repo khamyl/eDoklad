@@ -2,8 +2,9 @@
         <div id="menu" class="hidden-print">
 
             <!-- Brand -->
-            <a href="index.html?lang=en&amp;layout_type=fluid&amp;menu_position=menu-left&amp;style=style-default-menus-dark&amp;sidebar_type=collapsible"
-               class="appbrand"><span class="text-primary">e</span> <span>Doklad</span></a>
+            <a href="/" class="appbrand">
+                <span class="text-primary">e</span> <span>Doklad</span>
+            </a>
 
             <!-- Scrollable menu wrapper with Maximum height -->
             <div class="slim-scroll" data-scroll-height="800px">
@@ -16,7 +17,7 @@
 
                 <!-- Sidebar Profile -->
                 <span class="profile center">
-					<a href="/option">
+					<a href="/">
                         <img src="{{asset('theme/images/avatar-51x51.jpg')}}" alt="Avatar"/>
                     </a>
 				</span>
@@ -24,8 +25,8 @@
 
                 <!-- Menu -->
                 <ul>
-                    <li class="active">
-                        <a href="{{url('home')}}" class="glyphicons dashboard">
+                    <li class="{{ Request::is('/') ? 'active' : '' }}">
+                        <a href="/" class="glyphicons dashboard">
                             <i></i>
                             <span>Dashboard</span>
                         </a>

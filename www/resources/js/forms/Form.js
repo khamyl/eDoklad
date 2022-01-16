@@ -4,38 +4,67 @@ class Form {
     /**
      * Create a new Form instance.
      *
-     * @param {object} data
      */
-    constructor(data) {
-        this.originalData = data;
 
-        for (let field in data) {
-            this[field] = data[field];
+    constructor(data){
+        this.errors = new Errors();
+        this.action = '';
+        this.method = '';
+        this.redirect = '';
+
+        for (const [key, val] of Object.entries(data)) {            
+            this[key] = val; //console.log(`${key}: ${val}`);
         }
 
-        this.errors = new Errors();
+        this.validate();
+    }   
+
+    validate(){    
+        if(this.action === undefined || this.action == ''){
+            throw new Error("[e-doklad] Form: Unknown `action`!");
+        }
+
+        if(this.method === undefined || this.method == ''){
+            throw new Error("[e-doklad] Form: Unknown `method`!");
+        }
+
+        return true;
     }
 
+    /**
+     * Init form data using form DOM id
+     * 
+     * @param {*} form_id 
+     */
+    initWithFormID(form_id) {  
+        let theForm = document.getElementById(form_id); 
+        let formData = new FormData(theForm);
+        // need to convert it before using not with XMLHttpRequest
+        for (let [key, val] of formData.entries()) {                      
+            this[key] = val;
+        }  
+        this.validate();
+    }
 
     /**
      * Fetch all relevant data for the form.
      */
     data() {
-        let data = {};
-
-        for (let property in this.originalData) {
-            data[property] = this[property];
-        }
+        let data = Object.assign({}, this);
+        delete data.errors;
+        delete data.action;
+        delete data.method;
+        delete data.redirect;
 
         return data;
     }
 
-
+   
     /**
      * Reset the form fields.
      */
     reset() {
-        for (let field in this.originalData) {
+        for (let field in this.data()) {
             this[field] = '';
         }
 
@@ -48,7 +77,7 @@ class Form {
      * .
      * @param {string} url
      */
-    post(url) {
+    post(url='') {
         return this.submit('post', url);
     }
 
@@ -58,7 +87,7 @@ class Form {
      * .
      * @param {string} url
      */
-    put(url) {
+    put(url='') {
         return this.submit('put', url);
     }
 
@@ -68,7 +97,7 @@ class Form {
      * .
      * @param {string} url
      */
-    patch(url) {
+    patch(url='') {
         return this.submit('patch', url);
     }
 
@@ -78,7 +107,7 @@ class Form {
      * .
      * @param {string} url
      */
-    delete(url) {
+    delete(url='') {
         return this.submit('delete', url);
     }
 
@@ -89,17 +118,19 @@ class Form {
      * @param {string} requestType
      * @param {string} url
      */
-    submit(requestType, url) {
+    submit(requestType='post', url='#') {
+        
+        if(this.method != '') requestType = this.method;
+        if(this.action != '') url = this.action;
+
         return new Promise((resolve, reject) => {
             axios[requestType](url, this.data())
                 .then(response => {
-                    this.onSuccess(response.data);
-
+                    this.onSuccess(response.data);                    
                     resolve(response.data);
                 })
                 .catch(error => {                                              
                     this.onFail(error.response.data.errors);
-
                     reject(error.response.data.errors);
                 });
         });
@@ -112,8 +143,6 @@ class Form {
      * @param {object} data
      */
     onSuccess(data) {
-        alert(data.message); // temporary
-
         this.reset();
     }
 

@@ -14,13 +14,13 @@ class CreateDocumentTagTable extends Migration
     public function up()
     {
         Schema::create('document_tag', function (Blueprint $table) {
-            $table->unsignedBigInteger('role_id');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('document_id');
+            $table->unsignedBigInteger('tag_id');
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
+            $table->foreign('document_id')->references('id')->on('documents')->onDelete('cascade');
+            $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');
 
-            $table->primary(['user_id','role_id']);
+            $table->primary(['document_id','tag_id']);
         });
     }
 

@@ -43,5 +43,28 @@ class permissionSeeder extends Seeder
             'slug' => 'acc_read_docs',
             'description' => 'Can read documents on accountant profile level'
         ]);
+
+
+        //Seed relations
+        DB::table('permission_role')->insert([
+            'role_id' => 2,
+            'permission_id' => 2
+        ]);
+
+        DB::table('permission_role')->insert([
+            'role_id' => 2,
+            'permission_id' => 3
+        ]);
+
+        DB::table('permission_role')->insert([
+            'role_id' => 2,
+            'permission_id' => 4
+        ]);
+
+        DB::table('permission_role')->insert([
+            'role_id' => 3,
+            'permission_id' => 5
+        ]);
+
     }
 }

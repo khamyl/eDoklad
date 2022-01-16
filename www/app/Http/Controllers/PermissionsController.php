@@ -16,7 +16,7 @@ class PermissionsController extends Controller
         $roles = Role::select('id', 'slug', 'description')->get();
         foreach($roles as $role){
             $permissions[$role['id']] = $role->permissions();
-        }        
+        }      
         return view("admin.role.index")->with(compact('roles', 'permissions'));
     }
 
@@ -25,23 +25,26 @@ class PermissionsController extends Controller
         return view('admin.role.create', compact('permissions'));
     }
 
-    public function store(Request $reqest){
+    public function store(Request $request){        
 
-        // try{
+        $data = $request->validate([
+            'slug' => 'required|alpha_dash'
+        ]); 
+        
+        //Role
+        $role = new Role();
+        $role->slug = $request->slug;
+        $role->description = $request->description;
+        $role->save();
 
-            $data = $reqest->validate([
-                'slug' => 'required|alpha_dash'
-            ]);              
-                
-        // }catch (ValidationException $exception) {
-        //     return response()->json([
-        //         'status' => 'error',
-        //         'msg'    => 'Error',
-        //         'errors' => $exception->errors(),
-        //     ], 422);
-        // }
+        //Permissions
+        $role->permissions()->sync($request->permissions);
 
-        return true;
+            
+        $status = ['success' => 'Role successfully created.'];        
+        Session::flash('status', $status); 
+        return $status;               
+        //return redirect()->route('role.index')->with('status', $status);
     }
 
     public function edit(Role $role){
@@ -56,15 +59,25 @@ class PermissionsController extends Controller
         return view('admin.role.edit', compact('role', 'permissions', 'checked'));
     }
 
-    public function update(Request $reqest, $id){
-        
-        $role = Role::find($id);
-        $role->permissions()->sync($reqest->input('permissions'));
+    public function update(Request $request, $id){
 
-        $status = ['success' => 'Role successfully updated.'];
-        
-        Session::flash('status', $status);
-        // return redirect()->route('role.index')->with('status', $status);
+        //Validate
+        $data = $request->validate([
+            'slug' => 'required|alpha_dash'
+        ]);
+
+        //Update
+        $role = Role::find($id);        
+        $role->slug = $request->slug;
+        $role->description = $request->description;
+        $role->save();
+        $role->permissions()->sync($request->input('permissions'));          
+
+        //Finish
+        $status = ['success' => 'Role successfully updated.'];        
+        Session::flash('status', $status);     
+        return $status;           
+        //return redirect()->route('role.index')->with('status', $status);
     }
     
     /*

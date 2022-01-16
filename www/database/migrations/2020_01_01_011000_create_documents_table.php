@@ -15,21 +15,19 @@ class CreateDocumentsTable extends Migration
     {
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('company_id');
-            $table->unsignedBigInteger('user_id'); //Owner
-            $table->unsignedBigInteger('doc_type_id');
-            $table->timestamps();
+            $table->string('doc_type', 20); //polymorphic relation
+            $table->unsignedBigInteger('pid')->nullable();
+            $table->unsignedBigInteger('user_id'); //Creator            
+            $table->integer('doc_source'); //ENUM
+            $table->timestamps();            
             
-            $table->string ('name', 255);
-            $table->enum   ('status',['public', 'private'])->default('private');
-            $table->date   ('date')->nullable();
+            $table->string ('name', 255);            
+            $table->date   ('issue_date')->nullable();
             $table->boolean('deleted')->default(0);
             $table->boolean('active')->default(1);
-
-            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
+            
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('doc_type_id')->references('id')->on('doc_types')->onDelete('cascade');
-          
+            $table->foreign('pid')->references('id')->on('documents');
         });
     }
 

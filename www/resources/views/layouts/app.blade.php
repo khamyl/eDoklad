@@ -25,8 +25,7 @@
     <link href="{{ asset('theme/fonts/glyphicons/css/glyphicons_filetypes.css')}}" rel="stylesheet"/>
 
     <link rel="stylesheet" href="{{ asset('theme/fonts/font-awesome/css/font-awesome.min.css')}}">
-    <!--[if IE 7]>
-    <link rel="stylesheet" href="{{ asset('theme/fonts/font-awesome/css/font-awesome-ie7.min.css')}}"><![endif]-->
+    <!--[if IE 7]><link rel="stylesheet" href="{{ asset('theme/fonts/font-awesome/css/font-awesome-ie7.min.css')}}"><![endif]-->
 
     <!-- Uniform Pretty Checkboxes -->
     <link href="{{ asset('theme/scripts/plugins/forms/pixelmatrix-uniform/css/uniform.default.css')}}" rel="stylesheet"/>
@@ -54,7 +53,7 @@
     <link href="{{ asset('bootstrap/extend/jasny-fileupload/css/fileupload.css')}}" rel="stylesheet">
     <link href="{{ asset('bootstrap/extend/bootstrap-wysihtml5/css/bootstrap-wysihtml5-0.0.2.css')}}" rel="stylesheet">
     <link href="{{ asset('bootstrap/extend/bootstrap-select/bootstrap-select.css')}}" rel="stylesheet"/>
-    <link href="{{ asset('bootstrap/extend/bootstrap-switch/static/stylesheets/bootstrap-switch.css')}}" rel="stylesheet"/>3
+    <link href="{{ asset('bootstrap/extend/bootstrap-switch/static/stylesheets/bootstrap-switch.css')}}" rel="stylesheet"/>
     <link href="{{ asset('bootstrap/extend/bootstrap-spinner/bootstrap-spinner.css')}}" rel="stylesheet"/>
 
     <!-- DateTimePicker Plugin -->
@@ -87,12 +86,18 @@
     <link media="screen" href="{{ asset('theme/scripts/plugins/other/pageguide/css/pageguide.css')}}" rel="stylesheet"/>
     <!--<![endif]-->
 
+    <!-- FooTable Plugin -->
+	<link href="{{ asset('theme/scripts/plugins/tables/FooTable/css/footable-0.1.css')}}" rel="stylesheet" />
+
     <!-- Bootstrap Image Gallery -->
     <link href="{{ asset('bootstrap/extend/bootstrap-image-gallery/css/bootstrap-image-gallery.min.css')}}"
           rel="stylesheet"/>
 
     <!-- Main Theme Stylesheet :: CSS -->
     <link href="{{ asset('theme/css/style-default-menus-dark.css?1382019475')}}" rel="stylesheet" type="text/css"/>
+
+    <!-- Custom css -->
+    <link href="{{ asset('theme/css/custom.css')}}" rel="stylesheet" type="text/css"/>
 
     <!-- FireBug Lite -->
     <!-- <script src="https://getfirebug.com/firebug-lite-debug.js"></script> -->
@@ -120,7 +125,7 @@
 
 </head>
 
-<body class="document-body ">
+<body class="document-body">
 
 <!-- Main Container Fluid -->
 <div id='app' class="container-fluid menu-hidden sidebar-hidden-phone fluid menu-left">
@@ -133,7 +138,8 @@
         <!-- Content -->
         <div id="content">
             
-            @include('nav.topMenu')            
+            @include('nav.topMenu')   
+            @include('nav.breadcrumb')         
 
             @yield('content')
 
@@ -241,9 +247,8 @@
 <!-- Uniform Forms Plugin -->
 <script src="{{ asset('theme/scripts/plugins/forms/pixelmatrix-uniform/jquery.uniform.min.js')}}"></script>
 
-{{-- <!-- MegaMenu -->
-<script src="{{ asset('theme/scripts/demo/megamenu.js?1382019475')}}"></script> --}}
-
+<!-- MegaMenu -->
+<script src="{{ asset('theme/scripts/demo/megamenu.js?1382019475')}}"></script>
 
 
 <!-- Bootstrap Extended -->
@@ -281,24 +286,30 @@
 <!-- Twitter Feed -->
 {{-- <script src="{{ asset('theme/scripts/demo/twitter.js')}}"></script> --}}
 
-
-
 <!-- Ba-Resize Plugin -->
 <script src="{{ asset('theme/scripts/plugins/other/jquery.ba-resize.js')}}"></script>
 
+<!-- Responsive table --> 
+<script src="{{ asset('theme/scripts/plugins/tables/FooTable/js/footable.js')}}"></script>
+<script src="{{ asset('theme/scripts/demo/tables_responsive.js')}}"></script>
+
 <!-- Common Function Script -->
-<script type="text/javascript" src="{{ asset('js/common.js') }}"></script>
+{{-- <script type="text/javascript" src="{{ asset('js/common.js') }}"></script> --}}
 
 <!-- Bootstrap Image Gallery -->
 <script src="{{ asset('theme/scripts/plugins/gallery/load-image/js/load-image.min.js')}}"></script>
 <script src="{{ asset('bootstrap/extend/bootstrap-image-gallery/js/bootstrap-image-gallery.min.js')}}"
         type="text/javascript"></script>
 
-{{-- <!-- Dashboard Demo Script -->
+{{-- 
+<!-- Dashboard Demo Script -->
 <script src="{{ asset('theme/scripts/demo/index.js?1382019475')}}"></script>
+--}}
+
 
 <!-- Common Demo Script -->
-<script src="{{ asset('theme/scripts/demo/common.js?1382019475')}}"></script> --}}
+<script src="{{ asset('theme/scripts/demo/common.js?1382019475')}}"></script> 
+
 
 <!-- VUE -->
 <script type="text/javascript" src="{{ asset('js/app.js') }}" defer></script>

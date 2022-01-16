@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDocImgsTable extends Migration
+class CreateDocReceiptsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,15 @@ class CreateDocImgsTable extends Migration
      */
     public function up()
     {
-        Schema::create('doc_imgs', function (Blueprint $table) {
+        Schema::create('doc_receipts', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('document_id');
+            $table->unsignedBigInteger('document_id');                                
             
-            $table->string('url', 512);
-            $table->string('fname', 255);
-            $table->string('format', 45);
-            $table->string('size', 45);
-            $table->string('name', 50)->nullable();
-            $table->text  ('ocr_data')->nullable();   
-            
+            $table->integer('sum_no_vat');
+            $table->integer('vat');
+            $table->integer('sum');
+            $table->string ('uid', 100)->nullable(); //Receipt unique ID
+
             $table->foreign('document_id')->references('id')->on('documents')->onDelete('cascade');
         });
     }
@@ -35,6 +33,6 @@ class CreateDocImgsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('doc_imgs');
+        Schema::dropIfExists('doc_receipts');
     }
 }

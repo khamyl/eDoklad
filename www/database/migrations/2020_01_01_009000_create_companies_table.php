@@ -15,7 +15,8 @@ class CreateCompaniesTable extends Migration
     {
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('source_type_id');
+            $table->integer('source_type');
+            $table->unsignedBigInteger('pid_source')->nullable();
             $table->timestamps();           
             
             $table->string ('name');
@@ -24,7 +25,7 @@ class CreateCompaniesTable extends Migration
             $table->string ('ctin', 25)->nullable(); //IC DPH
             $table->string ('address', 255)->nullable();  
             
-            $table->foreign('source_type_id')->references('id')->on('source_types')->onDelete('cascade');
+            $table->foreign('pid_source')->references('id')->on('companies');
         });
     }
 

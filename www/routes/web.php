@@ -63,28 +63,34 @@ Route::get('userAddUc','AdminController@userAddUc');
 Route::post('deleteUctoClient','AdminController@deleteUctoClient');
 Route::post('addUserToUc','AdminController@addUserToUc');
 
+//Tags
+Route::resource('tags', TagController::class);
+// Route::get('/tags/delete/{tag}', 'TagsController@destroy')->name('tags.destroy');
+//[Remove] Route::get('/tags/sort/{sortby}/{ord?}', 'TagController@index')->name('tags.sort');
+
 //Dokument
-Route::get('showPaperDate/delete/{id}', 'DokumentController@delDocument');
-Route::post('deleteProduct/{id}','DokumentController@deleteProduct');
-Route::post('changeBasicInfo/{id}','DokumentController@changeBasicInfo');
-Route::post('changeItems/{id}','DokumentController@changeItems');
-Route::post('addItem/{id}','DokumentController@addItem');
-Route::post('documentInfo/{id}','DokumentController@documentInfo');
-Route::get('delItem/{id}','DokumentController@delItem');
-Route::get('/active/{id}','DokumentController@active');
-Route::get('/deactive/{id}','DokumentController@deactive');
-//Route::post('search','DokumentController@search');
-Route::post('showPaperDate/searchUser','DokumentController@searchUser');
-Route::post('searchDate','DokumentController@searchUser');
-Route::post('searchFolder','DokumentController@searchFolder');
-Route::get('paperShow','DokumentController@getDocumentFolder');
-Route::get('showPaperDate/paper/{id}','DokumentController@paperIdShow');
-Route::post('addProduct/{id}','DokumentController@addProduct');
-Route::post('tagChange/{id}','DokumentController@tagChange');
-Route::post('tagUserShow','DokumentController@tagUserShow');
-Route::get('/editAfterSafe', 'DokumentController@editAfterSafe');
-Route::post('/safeDocument', 'DokumentController@safeDocument');
-Route::get('/showPaperDate/{date}', 'DokumentController@getDocumentMounth');
+Route::get('/document', 'DocumentController@index')->name('document.index');
+// Route::get('showPaperDate/delete/{id}', 'DokumentController@delDocument');
+// Route::post('deleteProduct/{id}','DokumentController@deleteProduct');
+// Route::post('changeBasicInfo/{id}','DokumentController@changeBasicInfo');
+// Route::post('changeItems/{id}','DokumentController@changeItems');
+// Route::post('addItem/{id}','DokumentController@addItem');
+// Route::post('documentInfo/{id}','DokumentController@documentInfo');
+// Route::get('delItem/{id}','DokumentController@delItem');
+// Route::get('/active/{id}','DokumentController@active');
+// Route::get('/deactive/{id}','DokumentController@deactive');
+// //Route::post('search','DokumentController@search');
+// Route::post('showPaperDate/searchUser','DokumentController@searchUser');
+// Route::post('searchDate','DokumentController@searchUser');
+// Route::post('searchFolder','DokumentController@searchFolder');
+// Route::get('paperShow','DokumentController@getDocumentFolder');
+// Route::get('showPaperDate/paper/{id}','DokumentController@paperIdShow');
+// Route::post('addProduct/{id}','DokumentController@addProduct');
+// Route::post('tagChange/{id}','DokumentController@tagChange');
+// Route::post('tagUserShow','DokumentController@tagUserShow');
+// Route::get('/editAfterSafe', 'DokumentController@editAfterSafe');
+// Route::post('/safeDocument', 'DokumentController@safeDocument');
+// Route::get('/showPaperDate/{date}', 'DokumentController@getDocumentMounth');
 
 //image
 Route::post('/images-save', 'UploadImage@store');

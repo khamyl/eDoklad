@@ -45,4 +45,15 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function companies() {
+
+        return $this->belongsToMany(Company::class);
+            
+    }
+
+    public function parties()
+    {
+        return $this->morphMany(Doc_party::class, 'party');
+    }
 }

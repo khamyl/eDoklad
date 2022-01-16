@@ -1,3 +1,28 @@
-- modal: edit button sposobi freeze (data zo servru pridu...)
+== CODE ==
+- Consider moving the kyslik\SortableColumns into the app due to not sufficient support (or clone the repo and add mine to composer)
+- Consider setting Model constants within the Model
+- Document editor
+- Tag editor    
+    - (*) Sort and search using session to remember the settings    
+    - (*) Mark selected sorting (by ticks by the sorting links, or by writing the sorting onto button -> will probably need a bigger fixed size button - it cannot resize by content now)
+    - (*) Add validation for color, take care about empty value + support 3 value colors like #fff
+    - (+) Remove has-error when start typing 
+    - (-) consider using tags within company and by user (user will see but cannot edit company tags)
+    - (-) consider organize company tags into hierarchy        
+- Permissions    
+    - Try to use Route::resource('permissions', PermissionsController::class); 
+        - use plural
+        - change to permissions
+- Users
+    - Create default tags for user/company when created (there will be no common tags to allow user edit every tag he needs - common tags would not be editable)
 
-- the helping Tooltips are not worknig
+=== Later ===
+- neodchytavaju sa chyby global ErrorHandler (https://medium.com/js-dojo/error-exception-handling-in-vue-js-application-6c26eeb6b3e4)
+- na on:hover nad permission slug zobrazit Tooltip s description
+- zvazit zjednotenie UI navigacie do objektu, podla ktoreho sa budu generovat navigacne prvky (horizontalne a vertikalne menu), cim sa eliminuje duplikacia nazvov, ikoniek a odkazov
+
+== GIT ==
+- setup and test the project in new environment (prepare for contribution) 
+  - the forked project from github is unusabe. It lacks theme, some core functionality
+  - now it can be foked and merged with c:\_Khamyl_\WWW_Server\eDoklad\Archive\GIT_eDoklad.zip
+   

@@ -15,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         \Form::macro('fieldErr', function($field_name = ''){
-            return new HtmlString("<span class=\"form_field_error\" v-if=\"form.errors.has('$field_name')\" v-text=\"form.errors.get('$field_name')\"></span>");
+            return new HtmlString("<p class=\"has-error help-block\" v-if=\"form.errors.has('$field_name')\" v-text=\"form.errors.get('$field_name')\"></p>");
         });
     }
 

@@ -11,7 +11,7 @@
         <h1>{{__('Roles')}} <span>{{__('Manage roles\' permissions')}}</span></h1>
         <role-create-button />         
         <div class="clearfix"></div>
-    </div>
+    </div>    
 
     <div class="innerLR">             
         <div class="widget widget-heading-simple widget-body-gray">                
