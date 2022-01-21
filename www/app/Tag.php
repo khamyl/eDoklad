@@ -5,10 +5,11 @@ namespace App;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Kyslik\ColumnSortable\Sortable;
+use App\Filters\Filterable;
 
 class Tag extends Model
 {
-    use HasFactory, Sortable;
+    use HasFactory, Sortable, Filterable;
 
     public $timestamps = false;
     protected $fillable = ['tag', 'color', 'description'];

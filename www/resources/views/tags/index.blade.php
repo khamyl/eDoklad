@@ -7,11 +7,11 @@
 	
 	<tag-create-button></tag-create-button>  
 
-	<form autocomplete="off" class="form-inline buttons pull-right" style="width: 30em">
+	<form action="{{ route('tags.index') }}" method="GET" autocomplete="off" class="form-inline buttons pull-right" style="width: 30em">
 		<div class="widget-search">
-			<button type="button" class="btn btn-default pull-right"><i class="icon-search"></i></button>
+			<button type="submit" class="btn btn-default pull-right"><i class="icon-search" ></i></button>
 			<div class="overflow-hidden">
-				<input type="text" value="" class="form-control" placeholder="Search tags ..">
+				<input name='filter[tag]' type="text" value="" class="form-control" placeholder="Search tags ..">
 			</div>
 		</div>
 	</form>

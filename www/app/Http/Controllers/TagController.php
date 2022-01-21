@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
-use App\Tag;
 use Illuminate\Http\Request;
+
+use App\Tag;
+use App\Filters\TagFilters;
+
 use Session;
 
 class TagController extends Controller
@@ -15,9 +18,14 @@ class TagController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     public function index(){
+     public function index(Request $request, TagFilters $filters){
 
         $tags_q = Tag::where('user_id', Auth::id());
+
+        if(request()->has('filter')){
+            $tags_q->filter($filters);
+        }
+
         if(request()->has('sort')){
             $tags_q->sortable(); //Sortable is scope from kyslik\columnsortable vendored package
         }else{
